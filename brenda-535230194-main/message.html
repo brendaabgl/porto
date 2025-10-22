@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lifestyle Theme</title>
+  <link rel="stylesheet" href="./pico.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      color: #000; /* Warna teks utama hitam */
+    }
+
+    .gratitude-message {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #e6cfcf;
+      border-radius: 5px;
+      background-color: #fffaf8;
+      text-align: center;
+      color: #000; /* Pastikan teks di dalamnya hitam */
+    }
+
+    .gratitude-message h3 {
+      color: #000; /* Judul generator juga hitam */
+    }
+
+    .generate-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #f7b7a3;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      color: #000; /* Teks tombol hitam */
+      font-weight: bold;
+      transition: all 0.2s ease;
+    }
+
+    .generate-btn:hover {
+      background-color: #f59c8b;
+      transform: scale(1.05);
+    }
+
+    .a, h2, p {
+      color: #000 !important; /* Pastikan semua teks kontak hitam */
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="container-fluid">
+    <ul>
+      <li><strong>Self Care Vibes</strong></li>
+    </ul>
+    <ul>
+            <a href="../index.html">Home</a>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html" role="button">Subscribe</a></li>
+        </ul>
+  </nav>
+
+  <main class="container">
+    <div class="grid">
+      <section>
+        <!-- Gratitude Message Section -->
+        <div class="gratitude-message">
+          <h3>✨ Gratitude Generator ✨</h3>
+          <p id="gratitude-text"></p>
+          <button class="generate-btn" onclick="generateMessage()">Generate Gratitude Message</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <section id="join-community" aria-label="Contact section"> 
+        <div class="container">
+            <article>
+            <hgroup>
+                <h2>Contact Me</h2>
+                <h3>Let’s get in touch — I’d love to hear from you!</h3>
+            </hgroup>
+
+            <div class="contact-info">
+                <p>You can also reach me directly:</p>
+                <ul>
+                <li>Email: <a href="mailto:yourname@email.com">brendaabgl@gmail.com</a></li>
+                <li>Phone: <a href="tel:+6285147284738">+6285147284738</a></li>
+                <li>Chat: <a href="https://wa.me/6285147284738" target="_blank">WhatsApp Me</a></li>
+                </ul>
+            </div>
+            </article>
+        </div>
+    </section>
+
+
+  <footer class="container">
+    <small><a href="#">Privacy Policy</a> •
+      <a href="#">Terms &amp; Conditions</a></small>
+  </footer>
+
+  <script>
+    const messages = [
+      "🌟 Thank you for taking the time to care for yourself. Every small step towards wellness is worth celebrating!",
+      "💖 Your commitment to self-care is inspiring. Be kind to yourself today.",
+      "🌼 Appreciate the journey of growth. Every day is a new opportunity to bloom.",
+      "🌈 Grateful for your presence and your dedication to nurturing your mind, body, and spirit.",
+      "🌻 You are worthy of love and care. Keep shining your light!"
+    ];
+
+    function generateMessage() {
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById("gratitude-text").textContent = randomMessage;
+    }
+
+    // Menampilkan satu pesan saat pertama kali halaman dimuat
+    generateMessage();
+  </script>
+</body>
+</html>

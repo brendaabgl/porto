@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather App</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+    /* CSS as provided by the user */
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+        height: 100vh;
+        transition: background 1s;
+    }
+
+    /* Container untuk tombol navigasi */
+    .nav-button-container {
+        position: fixed; /* Penting agar tombol tetap di tempat */
+        top: 20px;
+        left: 20px;
+        z-index: 100; /* Memastikan tombol di atas semua elemen */
+    }
+
+    .nav-link {
+        display: inline-block;
+        text-decoration: none;
+        padding: 8px 15px;
+        background-color: rgba(255, 255, 255, 0.2); /* Transparan, agar terlihat di semua latar belakang cuaca */
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .weather-container {
+        position: relative;
+        z-index: 2;
+        background: rgba(0,0,0,0.3);
+        padding: 20px 40px;
+        border-radius: 15px;
+        display: inline-block;
+        top: 50%;
+        left: 50%; 
+        transform: translate(-50%, -50%); 
+    }
+
+    h1, p { margin: 10px 0; font-size: 1.2em;}
+    i.weather-icon { font-size: 80px; }
+
+    /* Effects */
+    .sun, .cloud, .raindrop, .snowflake {
+        position: absolute;
+        pointer-events: none;
+    }
+    .sun { width: 100px; height: 100px; border-radius: 50%; background: yellow; top:50px; left:50%; transform: translateX(-50%); animation: rotateSun 20s linear infinite; }
+    @keyframes rotateSun { 0%{transform: translateX(-50%) rotate(0deg);} 100%{transform: translateX(-50%) rotate(360deg);} }
+
+    .cloud { width:200px; height:80px; background: rgba(255,255,255,0.7); border-radius:50px; top:50px; animation: moveCloud 30s linear infinite;}
+    @keyframes moveCloud {0%{left:-250px;}100%{left:100vw;}}
+
+    .raindrop { width:2px; height:15px; background:#00bfff; animation: fall 1s linear infinite; }
+    @keyframes fall {0%{top:-20px;}100%{top:100vh;}}
+    .snowflake { width:8px; height:8px; background:white; border-radius:50%; animation: fallSnow linear infinite;}
+    @keyframes fallSnow {0%{top:-10px; transform:translateX(0);}100%{top:100vh; transform:translateX(50px);}}
+</style>
+</head>
+<body>
+
+<!-- TOMBOL PINDAH HALAMAN BARU DITAMBAHKAN DI SINI -->
+<div class="nav-button-container">
+    <!-- Ganti 'index.html' dengan URL halaman tujuan Anda -->
+    <a href="index.html" class="nav-link">
+        <i class="bi bi-arrow-left"></i> Home
+    </a>
+</div>
+
+<div class="weather-container">
+    <h1 id="location">Loading...</h1>
+    <i id="weather-icon" class="weather-icon bi bi-question-circle"></i>
+    <p id="description"></p>
+    <p id="temperature"></p>
+</div>
+
+<script>
+// PENTING: Ganti nilai kosong ini dengan OpenWeatherMap API Key Anda
+const apiKey = '1301a9d8efdce52eea8dc96b798b79e2'; 
+
+function clearEffects() {
+    document.querySelectorAll('.sun, .cloud, .raindrop, .snowflake').forEach(el => el.remove());
+}
+
+// Fungsi penambahan efek latar belakang
+function addSun(){ const sun = document.createElement('div'); sun.className='sun'; document.body.appendChild(sun);}
+function addClouds(){for(let i=0;i<3;i++){ const cloud=document.createElement('div'); cloud.className='cloud'; cloud.style.top=`${50+i*50}px`; cloud.style.animationDelay=`${i*5}s`; document.body.appendChild(cloud);}}
+function addRain(){for(let i=0;i<50;i++){const drop=document.createElement('div');drop.className='raindrop';drop.style.left=`${Math.random()*100}vw`;drop.style.animationDuration=`${0.5+Math.random()}s`;drop.style.animationDelay=`${Math.random()*2}s`;document.body.appendChild(drop);}}
+function addSnow(){for(let i=0;i<50;i++){const snow=document.createElement('div');snow.className='snowflake';snow.style.left=`${Math.random()*100}vw`;snow.style.animationDuration=`${3+Math.random()*3}s`;snow.style.animationDelay=`${Math.random()*3}s`;document.body.appendChild(snow);}}
+
+// Fungsi utama untuk memperbarui tampilan
+function updateUI(data){
+    const loc=document.getElementById('location');
+    const desc=document.getElementById('description');
+    const temp=document.getElementById('temperature');
+    const icon=document.getElementById('weather-icon');
+
+    // Cek apakah ada error dari API
+    if (data.cod !== 200) {
+        loc.textContent = `Error: ${data.message}`;
+        return;
+    }
+
+    loc.textContent=`${data.name}, ${data.sys.country}`;
+    desc.textContent=data.weather[0].description.toUpperCase(); 
+    temp.textContent=`${Math.round(data.main.temp)}°C`;
+
+    clearEffects();
+    const main=data.weather[0].main;
+    
+    // Logika untuk mengubah latar belakang dan ikon berdasarkan kondisi cuaca
+    switch(main){
+        case 'Clear': document.body.style.background='linear-gradient(to bottom,#87CEEB,#4DA0FF)'; icon.className='weather-icon bi bi-sun'; addSun(); break;
+        case 'Clouds': document.body.style.background='linear-gradient(to bottom,#B0C4DE,#708090)'; icon.className='weather-icon bi bi-cloud'; addClouds(); break;
+        case 'Rain': 
+        case 'Drizzle': 
+        case 'Thunderstorm': 
+            document.body.style.background='linear-gradient(to bottom,#4A6FA5,#1C1C2A)'; 
+            icon.className='weather-icon bi bi-cloud-rain'; 
+            addRain(); 
+            break;
+        case 'Snow': 
+            document.body.style.background='linear-gradient(to bottom,#A3D8F4,#FFFFFF)'; 
+            icon.className='weather-icon bi bi-snow'; 
+            addSnow(); 
+            break;
+        default: 
+            document.body.style.background='#4DA0FF'; 
+            icon.className='weather-icon bi bi-question-circle';
+    }
+}
+
+// Fungsi untuk mengambil data cuaca dari OpenWeatherMap
+function fetchWeather(lat, lon){
+    // URL endpoint yang sudah diperbaiki, menggunakan apiKey dan units=metric
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    
+    fetch(apiUrl)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            return res.json();
+        })
+        .then(data => updateUI(data))
+        .catch(err => {
+            console.error('Fetch Error:', err);
+            document.getElementById('location').textContent = 'Unable to get weather. Check API Key or network.';
+            document.getElementById('temperature').textContent = '';
+            clearEffects();
+        });
+}
+
+// Fungsi untuk mendapatkan lokasi pengguna
+function getLocation(){
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(
+            pos => fetchWeather(pos.coords.latitude, pos.coords.longitude),
+            () => fetchWeather(-6.200000, 106.816666) // Fallback ke Jakarta jika akses ditolak
+        );
+    } else {
+        fetchWeather(-6.200000, 106.816666); // Gunakan fallback jika Geolocation tidak didukung
+    }
+}
+
+// Jalankan aplikasi
+getLocation();
+</script>
+
+</body>
+</html>

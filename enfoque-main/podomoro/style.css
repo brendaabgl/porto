@@ -1,0 +1,68 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: grab; /* Kursor menjadi grab saat mouse berada di atas wadah */
+}
+
+.container:active {
+    cursor: grabbing; /* Kursor berubah menjadi grabbing saat wadah ditarik */
+}
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#timer {
+    font-size: 4em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.settings {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.settings label {
+    margin-right: 10px;
+}
+
+.settings input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

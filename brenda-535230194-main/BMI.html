@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifestyle Theme</title>
+    <link rel="stylesheet" href="./pico.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="number"], select {
+            width: 100%; /* Full width for better responsiveness */
+            max-width: 500px; /* Max width for larger screens */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%; /* Full width for better responsiveness */
+            max-width: 325px; /* Max width for larger screens */
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        section {
+            margin: 20px 0; 
+            padding: 15px; 
+            border-radius: 5px; 
+        }
+
+        .full-width {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>Self Care Vibes</strong></li>
+        </ul>
+        <ul>
+            <a href="../index.html">Home</a>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html" role="button">Subscribe</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="grid">
+            <section>
+                <h2>BMI Calculator</h2>
+                <h2 style="font-size: 20px; font-weight: bold; color: rgb(89, 120, 223);">
+                    "It's not about being skinny, it's about being healthy."
+                </h2>
+
+                <form id="bmiForm">
+                    <label for="age">Umur (tahun):</label>
+                    <input type="number" id="age" required>
+
+                    <label for="gender">Gender:</label>
+                    <select id="gender" required>
+                        <option value="male">Laki-laki</option>
+                        <option value="female">Perempuan</option>
+                    </select>
+
+                    <label for="weight">Berat Badan (kg):</label>
+                    <input type="number" id="weight" required>
+
+                    <label for="height">Tinggi Badan (cm):</label>
+                    <input type="number" id="height" required>
+
+                    <button type="submit">Hitung BMI</button>
+                </form>
+
+                <div id="result" class="result"></div>
+            </section>
+
+            <section class="full-width">
+                <p>
+                    Rawat kesehatan Anda hari ini dengan mengadopsi makanan bergizi dan kebiasaan makan yang penuh perhatian, mulai dari salad yang berwarna-warni hingga hidangan sehat yang memberi energi bagi tubuh dan pikiran Anda. Jelajahi bagaimana membuat pilihan ini dapat meningkatkan tingkat energi Anda dan membangun pandangan positif terhadap hidup.
+                </p>
+                <figure>
+                    <img src="https://cdn.discordapp.com/attachments/1022167932589068290/1299401795868819496/bmi1.webp?ex=671dba79&is=671c68f9&hm=d003e9aac62d4d5a0dcd3efd524a4d413d59945f471338d0d35e3bbdc31f91c4&" alt="BMI body mass ">
+                </figure>
+                <h2>What does BMI mean?</h2>
+                <p>
+                    Body Mass Index atau BMI adalah perkiraan lemak tubuh yang didasarkan pada tinggi dan berat badan. Ini mengkategorikan status berat badan seseorang dan menilai apakah mereka kekurangan berat badan, normal, kelebihan berat badan, atau obesitas. Berikut adalah rumus yang digunakan untuk menghitung IMT dalam Sistem Internasional (SI) dan sistem adat AS (USC) menggunakan contoh individu dengan tinggi 5'10" dan berat 160 pon:
+                </p>
+                <img src="https://cdn.discordapp.com/attachments/1022167932589068290/1299407174799331400/bmi2.png?ex=671d16bc&is=671bc53c&hm=c0cd96fe8afcf2b703e2d33fe05495c18b6e114e08f1088b193687ab4d2b2707&" alt="BMI count ">
+            </section>
+
+            <section>
+                <p>
+                    Ini adalah rekomendasi berat badan dari Organisasi Kesehatan Dunia (WHO) berdasarkan nilai IMT untuk orang dewasa. Rekomendasi ini berlaku untuk baik pria maupun wanita:
+                </p>
+                <h2>
+                    Diatas umur 20 tahun :
+                </h2>
+                <img src="gambar/20year.png" alt="BMI 20older ">
+                <p></p>
+                <p></p>
+                <p>
+                    Sementara itu, Pusat Pengendalian dan Pencegahan Penyakit (CDC) merekomendasikan data kategorisasi IMT berikut untuk anak-anak dan remaja:
+                </p>
+                <h2>Umur 2 sampai 20 tahun</h2>
+                <img src="gambar/before20.png" alt="BMI under20 ">
+            </section>
+        </div>
+    </main>
+
+    <section id="join-community" aria-label="Contact section"> 
+        <div class="container">
+            <article>
+            <hgroup>
+                <h2>Contact Me</h2>
+                <h3>Let’s get in touch — I’d love to hear from you!</h3>
+            </hgroup>
+
+            <div class="contact-info">
+                <p>You can also reach me directly:</p>
+                <ul>
+                <li>Email: <a href="mailto:yourname@email.com">brendaabgl@gmail.com</a></li>
+                <li>Phone: <a href="tel:+6285147284738">+6285147284738</a></li>
+                <li>Chat: <a href="https://wa.me/6285147284738" target="_blank">WhatsApp Me</a></li>
+                </ul>
+            </div>
+            </article>
+        </div>
+    </section>
+
+    <footer class="container">
+        <small><a href="#">Privacy Policy</a> •
+            <a href="#">Terms &amp; Conditions</a></small>
+    </footer>
+
+    <script>
+        document.getElementById('bmiForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+    
+            const age = parseInt(document.getElementById('age').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const height = parseFloat(document.getElementById('height').value) / 100; // convert cm to m
+    
+            const bmi = weight / (height * height);
+            let classification = '';
+    
+            if (age >= 20) {
+                // Klasifikasi untuk umur 20 tahun ke atas
+                if (bmi < 16) classification = 'Underweight (severe)';
+                else if (bmi < 17) classification = 'Underweight (moderate)';
+                else if (bmi < 18.5) classification = 'Underweight (mild)';
+                else if (bmi < 25) classification = 'Normal';
+                else if (bmi < 30) classification = 'Overweight';
+                else if (bmi < 35) classification = 'Obese Class I';
+                else if (bmi < 40) classification = 'Obese Class II';
+                else classification = 'Obese Class III';
+            } else {
+                // Klasifikasi untuk umur di bawah 20 tahun
+                const percentile = (bmi / 25) * 100; // Menghitung persentil berdasarkan asumsi BMI 25
+                if (percentile < 5) classification = 'Underweight';
+                else if (percentile < 85) classification = 'Healthy weight';
+                else if (percentile < 95) classification = 'At risk of overweight';
+                else classification = 'Overweight';
+            }
+    
+            document.getElementById('result').innerText = `BMI Anda: ${bmi.toFixed(2)} - Klasifikasi: ${classification}`;
+        });
+    </script>
+    
+</body>
+</html>

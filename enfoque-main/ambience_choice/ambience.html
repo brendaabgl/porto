@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Audio on Button Click</title>
+    <style>
+        #firebutton, #rainbutton, #typebutton, #keybutton, #writebutton {
+            width: 50px;
+            height: 50px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+        #firebutton img, #rainbutton img, #typebutton img, #keybutton img, #writebutton img {
+            width: 70%;
+            height: 70%;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(21%) saturate(128%) hue-rotate(185deg) brightness(91%);
+        }
+        #ambicon {
+            width: 10%;
+            height: 10%;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(21%) saturate(128%) hue-rotate(185deg) brightness(91%);
+        }
+        .fireslider, .rainslider, .keyslider, .typeslider, .writeslider {
+            -webkit-appearance: none;
+            appearance: none; 
+            width: 100%;
+            cursor: pointer;
+            outline: none;
+            overflow: visible;
+            border-radius: 16px;
+        }
+        .fireslider::-webkit-slider-runnable-track, .rainslider::-webkit-slider-runnable-track, .keyslider::-webkit-slider-runnable-track, .typeslider::-webkit-slider-runnable-track, .writeslider::-webkit-slider-runnable-track {
+            height: 15px;
+            background: #DADAD9;
+            border-radius: 16px;
+        }
+        .fireslider::-webkit-slider-thumb, .rainslider::-webkit-slider-thumb, .keyslider::-webkit-slider-thumb, .typeslider::-webkit-slider-thumb, .writeslider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none; 
+            height: 50px;
+            width: 50px;
+            background: url('../imageIcon/volume-low-solid.svg') no-repeat center center;
+            filter: brightness(0) saturate(100%) invert(28%) sepia(21%) saturate(128%) hue-rotate(185deg) brightness(91%);
+            background-size: 80%;
+            border: none;
+            cursor: pointer;
+            margin-top: -18px;
+        }
+        .Ambiance{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 500px;
+            padding: 25px;
+            border-radius: 7%;
+        }
+        .fire, .key, .rain, .type, .write{
+            display: flex;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .firevolume, .rainvolume, .keyvolume, .typevolume, .writevolume{
+            flex-grow: 3;
+        }
+    </style>
+</head>
+<body>
+    <div class="Ambiance">
+        <div class="fire">
+            <img src="../imageIcon/fire-solid.svg" id="ambicon">
+            <button id="firebutton"><img src="../imageIcon/play-solid.svg" id="fireplay"></button>
+            <audio id="fireaudio" src="../sounds/fireplace.mp3"></audio>
+            <div class="firevolume">
+                <input type="range" min="1" max="100" value="100" class="fireslider" id="fireslider">
+            </div>
+        </div>
+        <div class="rain">
+            <img src="../imageIcon/cloud-rain-solid.svg" id="ambicon">
+            <button id="rainbutton"><img src="../imageIcon/play-solid.svg" id="rainplay"></button>
+            <audio id="rainaudio" src="../sounds/rain.mp3"></audio>
+            <div class="rainvolume">
+                <input type="range" min="1" max="100" value="100" class="rainslider" id="rainslider">
+            </div>
+        </div>
+        <div class="type">
+            <img src="../imageIcon/typewriter_7207564.png" id="ambicon">
+            <button id="typebutton"><img src="../imageIcon/play-solid.svg" id="typeplay"></button>
+            <audio id="typeaudio" src="../sounds/typerwriter.mp3"></audio>
+            <div class="typevolume">
+                <input type="range" min="1" max="100" value="100" class="typeslider" id="typeslider">
+            </div>
+        </div>
+        <div class="key">
+            <img src="../imageIcon/keyboard-solid.svg" id="ambicon">
+            <button id="keybutton"><img src="../imageIcon/play-solid.svg" id="keyplay"></button>
+            <audio id="keyaudio" src="../sounds/keyboard.mp3"></audio>
+            <div class="keyvolume">
+                <input type="range" min="1" max="100" value="100" class="keyslider" id="keyslider">
+            </div>
+        </div>
+        <div class="write">
+            <img src="../imageIcon/pencil-solid.svg" id="ambicon">
+            <button id="writebutton"><img src="../imageIcon/play-solid.svg" id="writeplay"></button>
+            <audio id="writeaudio" src="../sounds/writing.mp3"></audio>
+            <div class="writevolume">
+                <input type="range" min="1" max="100" value="100" class="writeslider" id="writeslider">
+            </div>
+        </div>
+    </div>
+    <script>
+        //fire
+        var firePlaying = false;
+        document.getElementById("firebutton").addEventListener("click", function() {
+            if(!firePlaying){
+                var audio = document.getElementById("fireaudio");
+                audio.play();
+                audio.loop = true;
+                firePlaying = true;
+                document.getElementById("fireplay").src = "../imageIcon/pause-solid.svg";
+            }
+            else{
+                var audio = document.getElementById("fireaudio");
+                audio.pause();
+                firePlaying = false;
+                document.getElementById("fireplay").src = "../imageIcon/play-solid.svg";
+            }
+        });
+        var fslider = document.getElementById("fireslider");
+        fslider.oninput = function() {
+            if(firePlaying){
+                var audio = document.getElementById("fireaudio");
+                audio.volume = this.value / 100;
+            }
+        }
+        //keyboard
+        var keyPlaying = false;
+        document.getElementById("keybutton").addEventListener("click", function() {
+            if(!keyPlaying){
+                var audio = document.getElementById("keyaudio");
+                audio.play();
+                audio.loop = true;
+                keyPlaying = true;
+                document.getElementById("keyplay").src = "../imageIcon/pause-solid.svg";
+            }
+            else{
+                var audio = document.getElementById("keyaudio");
+                audio.pause();
+                keyPlaying = false;
+                document.getElementById("keyplay").src = "../imageIcon/play-solid.svg";
+            }
+        });
+        var kslider = document.getElementById("keyslider");
+        kslider.oninput = function() {
+            if(keyPlaying){
+                var audio = document.getElementById("keyaudio");
+                audio.volume = this.value / 100;
+            }
+        }
+        //rain
+        var rainPlaying = false;
+        document.getElementById("rainbutton").addEventListener("click", function() {
+            if(!rainPlaying){
+                var audio = document.getElementById("rainaudio");
+                audio.play();
+                audio.loop = true;
+                rainPlaying = true;
+                document.getElementById("rainplay").src = "../imageIcon/pause-solid.svg";
+            }
+            else{
+                var audio = document.getElementById("rainaudio");
+                audio.pause();
+                rainPlaying = false;
+                document.getElementById("rainplay").src = "../imageIcon/play-solid.svg";
+            }
+        });
+        var rslider = document.getElementById("rainslider");
+        rslider.oninput = function() {
+            if(rainPlaying){
+                var audio = document.getElementById("rainaudio");
+                audio.volume = this.value / 100;
+            }
+        }
+        //typewriter
+        var typePlaying = false;
+        document.getElementById("typebutton").addEventListener("click", function() {
+            if(!typePlaying){
+                var audio = document.getElementById("typeaudio");
+                audio.play();
+                audio.loop = true;
+                typePlaying = true;
+                document.getElementById("typeplay").src = "../imageIcon/pause-solid.svg";
+            }
+            else{
+                var audio = document.getElementById("typeaudio");
+                audio.pause();
+                typePlaying = false;
+                document.getElementById("typeplay").src = "../imageIcon/play-solid.svg";
+            }
+        });
+        var tslider = document.getElementById("typeslider");
+        tslider.oninput = function() {
+            if(typePlaying){
+                var audio = document.getElementById("typeaudio");
+                audio.volume = this.value / 100;
+            }
+        }
+    </script>
+</body>
+</html>

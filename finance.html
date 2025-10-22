@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhanced Finance Tracker</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        background: linear-gradient(to right, #667eea, #764ba2);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+    
+    /* --- CSS UNTUK TOMBOL NAVIGASI --- */
+    .nav-button-container {
+        position: fixed; 
+        top: 20px;
+        left: 20px;
+        z-index: 100; /* Memastikan tombol di atas semua elemen */
+    }
+
+    .nav-link {
+        display: inline-block;
+        text-decoration: none;
+        padding: 10px 18px;
+        background-color: #ffb347; /* Warna cerah dari tombol submit */
+        color: #333;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: background-color 0.3s, transform 0.1s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-link:hover {
+        background-color: #ffcc33;
+        transform: translateY(-1px);
+    }
+    
+    h1 { margin-bottom: 20px; }
+    .tracker-container {
+        background: rgba(255,255,255,0.1);
+        padding: 25px 35px;
+        border-radius: 20px;
+        max-width: 700px;
+        width: 100%;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        backdrop-filter: blur(10px);
+        margin-bottom: 20px;
+    }
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    input, select, button { padding: 12px; border-radius: 10px; border: none; flex: 1 1 45%; font-size: 1rem; }
+    input, select { background: rgba(255,255,255,0.8); color: #333; }
+    button { flex: 1 1 100%; background: #ffb347; color: #333; cursor: pointer; font-weight: bold; transition: 0.3s; }
+    button:hover { background: #ffcc33; }
+    ul { list-style: none; padding: 0; max-height: 200px; overflow-y: auto; margin-bottom: 20px; }
+    li { padding: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.15); border-radius: 10px; }
+    li span { flex: 1; margin-right: 10px; }
+    li button { background: #ff4d4d; color: #fff; padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; }
+    li button:hover { background: #ff0000; }
+    .income { color: #00ff99; font-weight: bold; }
+    .expense { color: #ff4d4d; font-weight: bold; }
+    .balance { font-size: 1.2rem; margin-bottom: 20px; text-align: right; }
+    canvas { max-width: 100%; background: rgba(255,255,255,0.1); border-radius: 15px; padding: 10px; }
+</style>
+</head>
+<body>
+
+<!-- TOMBOL NAVIGASI KE HALAMAN LAIN -->
+<div class="nav-button-container">
+    <a href="./index.html" class="nav-link">
+        < Home
+    </a>
+</div>
+
+<h1>Enhanced Finance Tracker</h1>
+<div class="tracker-container">
+    <form id="transaction-form">
+        <input type="text" id="description" placeholder="Description" required>
+        <input type="number" id="amount" placeholder="Amount" required>
+        <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+            <option value="savings">Savings/Investment</option>
+        </select>
+        <button type="submit">Add Transaction</button>
+    </form>
+
+    <div class="balance" id="balance">Balance: Rp0</div>
+    <ul id="transactions-list"></ul>
+
+    <div>
+        <label for="interest">Expected annual return (%) / Inflation: </label>
+        <input type="number" id="interest" value="5">
+        <button id="calculate-projection">Calculate Projection (5 years)</button>
+        <p id="projection-result"></p>
+    </div>
+
+    <canvas id="financeChart" width="400" height="200"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const form = document.getElementById('transaction-form');
+const descriptionInput = document.getElementById('description');
+const amountInput = document.getElementById('amount');
+const typeInput = document.getElementById('type');
+const transactionsList = document.getElementById('transactions-list');
+const balanceEl = document.getElementById('balance');
+const interestInput = document.getElementById('interest');
+const projectionResult = document.getElementById('projection-result');
+
+// Menggunakan localStorage karena ini adalah aplikasi satu file sederhana
+let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+
+function formatRupiah(amount) {
+    return amount.toLocaleString('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 });
+}
+
+function saveTransactions() {
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+}
+
+function calculateBalance() {
+    return transactions.reduce((acc, tx) => tx.type === 'income' ? acc + tx.amount : tx.type === 'expense' ? acc - tx.amount : acc, 0);
+}
+
+function totalSavings() {
+    return transactions.reduce((acc, tx) => tx.type === 'savings' ? acc + tx.amount : acc, 0);
+}
+
+function renderTransactions() {
+    transactionsList.innerHTML = '';
+    transactions.forEach((tx, index) => {
+        const li = document.createElement('li');
+        let sign = '';
+        if (tx.type === 'income' || tx.type === 'savings') {
+            sign = '+';
+        } else if (tx.type === 'expense') {
+            sign = '-';
+        }
+        
+        li.innerHTML = `
+            <span>${tx.description}</span>
+            <span class="${tx.type}">${sign}${formatRupiah(tx.amount)}</span>
+            <button onclick="deleteTransaction(${index})">Delete</button>
+        `;
+        transactionsList.appendChild(li);
+    });
+    balanceEl.textContent = `Balance: ${formatRupiah(calculateBalance())}`;
+}
+
+let chart;
+function updateChart() {
+    const labels = transactions.map(tx => tx.description);
+    const data = transactions.map(tx => {
+        if(tx.type==='income') return tx.amount;
+        if(tx.type==='expense') return -tx.amount;
+        return 0; // Savings ignored in main chart
+    });
+
+    if(chart) chart.destroy();
+
+    chart = new Chart(document.getElementById('financeChart'), {
+        type:'bar',
+        data: {
+            labels,
+            datasets:[{
+                label:'Income/Expense',
+                data,
+                backgroundColor:data.map(val=> val>=0?'#00ff99':'#ff4d4d')
+            }]
+        },
+        options: { responsive:true, scales:{y:{beginAtZero:true}} }
+    });
+}
+
+function addTransaction(description, amount, type) {
+    // Terapkan batas maksimum 10 digit untuk menjaga kinerja aplikasi
+    if (String(amount).length > 10) {
+        // Gunakan console.error/log sebagai pengganti alert
+        console.error("Amount too large. Max 10 digits allowed.");
+        return; 
+    }
+    
+    transactions.push({ description, amount: parseFloat(amount), type });
+    saveTransactions();
+    renderTransactions();
+    updateChart();
+}
+
+function deleteTransaction(index) {
+    transactions.splice(index,1);
+    saveTransactions();
+    renderTransactions();
+    updateChart();
+}
+
+function calculateProjection() {
+    const rate = parseFloat(interestInput.value)/100;
+    let savings = totalSavings();
+    const years = 5;
+    
+    if (savings <= 0) {
+        projectionResult.textContent = 'Add "Savings/Investment" transactions to calculate future projection.';
+        return;
+    }
+    
+    let future = savings * Math.pow(1+rate, years);
+    projectionResult.textContent = `Your savings of ${formatRupiah(savings)} could grow to ${formatRupiah(future)} in ${years} years at ${rate*100}% annual return.`;
+}
+
+form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    const amount = amountInput.value.replace(/[^0-9.]/g, ''); // Hapus karakter non-angka
+    addTransaction(descriptionInput.value.trim(), amount, typeInput.value);
+    form.reset();
+});
+
+document.getElementById('calculate-projection').addEventListener('click', calculateProjection);
+
+// Initial render
+renderTransactions();
+updateChart();
+</script>
+
+</body>
+</html>

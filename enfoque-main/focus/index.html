@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enfoque</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
+
+  </head>
+  <body>
+    <!--header navigation-->
+    <div class="uphead">
+      <a href="../homepage.html" class="enlogo">enfoque</a>
+      <div class="rightnav">
+        <button id="rightnavabout">Tentang</button>
+        <button id="rightnavcontact">Kontak</button>
+      </div>
+    </div>
+    <div class="side">
+      <div class="icon-1">
+      <nav>
+        <ul>
+          <li class="sideli">
+            <a href="#" class="logo">
+              <img src="../imageIcon/logoUntar.png" alt="" />
+              <span class="nav-item"></span>
+            </a>
+          </li>
+          <li class="sideli">
+            <a href="#" class="icon" id="timerToggle">
+              <i class="fas fa-clock fa-2x" id="clock"></i>
+              <span class="nav-item"></span>
+            </a>
+          </li>
+          <li class="sideli">
+            <a href="#" class="navbar-toggle">
+              <i class="fas fa-palette fa-2x" id="palette"></i>
+              <span class="nav-item"></span>
+            </a>
+          </li>
+          <li class="sideli">
+            <a href="#" id="todo-button">
+              <i class="fas fa-list-ul fa-2x" id="tdl"></i>
+              <span class="nav-item"></span>
+            </a>
+          </li>
+          <li class="sideli">
+            <a href="#" id="music-button">
+              <i class="fas fa-music fa-2x" id="music"></i>
+              <span class="nav-item"></span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  
+    </div>
+  </div>
+      <div class="modetoggle">
+        <img
+          src="../imageIcon/sun-regular.svg"
+          width="1.2%"
+          class="togicon"
+          id="sun"
+        />
+        <input type="checkbox" id="check" />
+        <label for="check" class="buttoned"></label>
+        <img
+          src="../imageIcon/moon-solid.svg"
+          width="1.2%"
+          class="togicon"
+          id="moon"
+        />
+      </div>
+    </div>
+   <!--to do list-->
+   <section id="todo-section">
+    <div class="wrap">
+         <div class="container-1">
+           <div class="todo">
+            
+             <div class="stats-container">
+               <div class="details">
+                 <h2>
+                   Catatan 🌱
+                   <img
+                     class="sticky-note"
+                     src="../imageIcon/icons8-todo-list-66.png"
+                     alt="Todo Icon"
+                   />
+                 </h2>
+                 <div class="ke">
+                 <p> Ayo Tetap Semangat</p>
+                 <div id="progress-section">
+                   <div id="progressBar">
+                     <div id="progress"></div>
+                   </div>
+                   <div class="stats-number">
+                     <p id="numbers">2 / 3</p>
+                   </div>
+                 </div>
+               </div>
+                </div>
+             </div>
+   
+             <div class="row">
+               <input type="text" id="input-box" placeholder="Ketik disini" />
+               <button onclick="addTask()" id="todobutton">Tambahkan catatan</button> </div>
+               <div class="filters">
+                <button id="all-tasks">Semua</button>
+                <button id="pending-tasks">Tertunda</button>
+                <button id="completed-tasks">Selesai</button>
+              </div>
+              <div><ul id="list-container"></ul></div>
+          </div>
+        </div>
+     </div>
+       </section>
+    <!--ambiance player-->
+    <section class="ambiance-section">
+      <div class="Ambiance">
+        <p>Suara Ambiance</p>
+        <div class="fire">
+          <img src="../imageIcon/fire-solid.svg" class="ambicon" id="fireicon" />
+          <button id="firebutton">
+            <img src="../imageIcon/play-solid.svg" id="fireplay" />
+          </button>
+          <audio id="fireaudio" src="../sounds/fireplace.mp3"></audio>
+          <div class="firevolume">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              class="fireslider"
+              id="fireslider"
+            />
+          </div>
+          <div class="volicon"><img src="../imageIcon/volume-high-solid.svg" id="firevolicon"></div>
+        </div>
+        <div class="rain">
+          <img
+            src="../imageIcon/cloud-rain-solid.svg"
+            class="ambicon"
+            id="rainicon"
+          />
+          <button id="rainbutton">
+            <img src="../imageIcon/play-solid.svg" id="rainplay" />
+          </button>
+          <audio id="rainaudio" src="../sounds/rain.mp3"></audio>
+          <div class="rainvolume">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              class="rainslider"
+              id="rainslider"
+            />
+          </div>
+          <div class="volicon"><img src="../imageIcon/volume-high-solid.svg" id="rainvolicon"></div>
+        </div>
+        <div class="type">
+          <img
+            src="../imageIcon/typewriter_7207564.png"
+            class="ambicon"
+            id="typeicon"
+          />
+          <button id="typebutton">
+            <img src="../imageIcon/play-solid.svg" id="typeplay" />
+          </button>
+          <audio id="typeaudio" src="../sounds/typerwriter.mp3"></audio>
+          <div class="typevolume">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              class="typeslider"
+              id="typeslider"
+            />
+          </div>
+          <div class="volicon"><img src="../imageIcon/volume-high-solid.svg" id="typevolicon"></div>
+        </div>
+        <div class="key">
+          <img
+            src="../imageIcon/keyboard-solid.svg"
+            class="ambicon"
+            id="keyicon"
+          />
+          <button id="keybutton">
+            <img src="../imageIcon/play-solid.svg" id="keyplay" />
+          </button>
+          <audio id="keyaudio" src="../sounds/keyboard.mp3"></audio>
+          <div class="keyvolume">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              class="keyslider"
+              id="keyslider"
+            />
+          </div>
+          <div class="volicon"><img src="../imageIcon/volume-high-solid.svg" id="keyvolicon"></div>
+        </div>
+        <div class="write">
+          <img
+            src="../imageIcon/pencil-solid.svg"
+            class="ambicon"
+            id="writeicon"
+          />
+          <button id="writebutton">
+            <img src="../imageIcon/play-solid.svg" id="writeplay" />
+          </button>
+          <audio id="writeaudio" src="../sounds/writing.mp3"></audio>
+          <div class="writevolume">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              class="writeslider"
+              id="writeslider"
+            />
+          </div>
+          <div class="volicon"><img src="../imageIcon/volume-high-solid.svg" id="writevolicon"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- background chooser -->
+    <div class="background-chooser">
+      <h2>Pilih Background : </h2>
+      <div class="choices">
+        <img src="../background/fireplace.jpg" alt="fireplace" class="choice" />
+        <img src="../background/friends.jpg" alt="friends" class="choice" />
+        <img src="../background/city.jpg" alt="city" class="choice"/>
+        <img src="../background/home_river.jpg" alt="home_river" class="choice"/>
+        <img src="../background/nature.jpg" alt="nature" class="choice" />
+        <img src="../background/japan.jpg" alt="japan" class="choice"/>
+        <img src="../background/park.jpg" alt="park" class="choice" />
+        <img src="../background/rainy.jpg" alt="rainy" class="choice" />
+        <img src="../background/river.jpg" alt="river" class="choice" />
+        <img src="../background/brooklyn.jpg" alt="brooklyn" class="choice"/>
+        <img src="../background/citylight.jpg" alt="citylight" class="choice" />
+        <img src="../background/roads.jpg" alt="roads" class="choice" />
+        <img src="../background/room.jpg" alt="room" class="choice" />
+        <img src="../background/bigroom.jpg" alt="big_room" class="choice" />
+        <img src="../background/yatch.jpg" alt="yatch" class="choice" />
+        <img src="../background/starry.jpg" alt="starry" class="choice" />
+      </div>
+    </div>
+
+    <!--team about-->
+    <div class="about">
+      <div class="brenda" id="deve">
+        <img src="../developerpic/brenda.jpg" />
+        <p>Brenda Abigail Hans's H.<br />535230164</p>
+      </div>
+      <div class="eryca" id="deve">
+        <img src="../developerpic/eryca.jpg" />
+        <p>Eryca Dhamma Shanty<br />535230071</p>
+      </div>
+      <div class="gea" id="deve">
+        <img src="../developerpic/gea.jpg" />
+        <p>Georgia Sugisandhea<br />535230080</p>
+      </div>
+    </div>
+    <!--team contact-->
+    <div class="contact">
+      <div class="cntctbrenda">
+        <div class="contactlinks">
+          <div class="instagram"><a href="https://www.instagram.com/brendabigaill" id="iglink" target="_blank"><img id="igb" src="../imageIcon/instagram.png" width=25px height=25px></a></div>
+          <div class="email"><a href="mailto:brendaabgl@gmail.com" id="maillink" target="_blank"><img id="mailb" src="../imageIcon/email.png" width=35px height=35px></a></div>
+          <div class="whatsapp"><a href="https://wa.me/6281299055427" id="walink" target="_blank"><img id="wab" src="../imageIcon/whatsapp.png" width=25px height=25px></a></div>
+        </div>
+        <p>Brenda Abigail Hans's H.</p>
+      </div>
+      <div class="cntcteryca">
+        <div class="contactlinks">
+          <div class="instagram"><a href="https://www.instagram.com/brendabigaill" id="iglink" target="_blank"><img id="ige" src="../imageIcon/instagram.png" width=25px height=25px></a></div>
+          <div class="email"><a href="mailto:brendaabgl@gmail.com" id="maillink" target="_blank"><img id="maile" src="../imageIcon/email.png" width=35px height=35px></a></div>
+          <div class="whatsapp"><a href="https://wa.me/6281299055427" id="walink" target="_blank"><img id="wae" src="../imageIcon/whatsapp.png" width=25px height=25px></a></div>
+        </div>
+        <p>Eryca Dhamma Shanty</p>
+      </div>
+      <div class="cntctgea">
+        <div class="contactlinks">
+          <div class="instagram"><a href="https://www.instagram.com/brendabigaill" id="iglink" target="_blank"><img id="igg" src="../imageIcon/instagram.png" width=25px height=25px></a></div>
+          <div class="email"><a href="mailto:brendaabgl@gmail.com" id="maillink" target="_blank"><img id="mailg" src="../imageIcon/email.png" width=35px height=35px></a></div>
+          <div class="whatsapp"><a href="https://wa.me/6281299055427" id="walink" target="_blank"><img id="wag" src="../imageIcon/whatsapp.png" width=25px height=25px></a></div>
+        </div>
+        <p>Georgia Sugisandhea</p>
+      </div>
+    </div>
+    </div>
+    
+    <!--pomodoro timer-->
+    <div class="pomodoro-timer-box">
+      <div class="pomodoro-timer">
+        <h1>Pomodoro Timer</h1>
+        <div id="timer">25:00</div>
+        <div class="buttons">
+          <button id="start">Mulai</button>
+          <button id="pause">Jeda</button>
+          <button id="reset">Reset</button>
+        </div>
+        <div class="settings">
+          <label for="workTime">Waktu Kerja:</label>
+          <input type="number" id="workTime" value="25" min="1">
+          <label for="breakTime" id="breakSeparator">Waktu Istirahat:</label>
+          <input type="number" id="breakTime" value="5" min="1">
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

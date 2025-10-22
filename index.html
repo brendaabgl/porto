@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <style>
+    /* === Sticky Navbar === */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+
+    .navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .navbar .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar .nav-links a {
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .navbar .nav-links a:hover {
+      color: #007bff;
+    }
+
+    /* === Contact Section === */
+    .contact-article {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 600px;
+      margin: 80px auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+    }
+
+    .contact-article hgroup h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .contact-article hgroup h3 {
+      font-size: 1.2rem;
+      text-align: center;
+      color: #555;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .contact-article .contact-info p {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .contact-article .contact-info ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .contact-article .contact-info li a {
+      text-decoration: none;
+      color: #007bff;
+      transition: 0.3s;
+    }
+
+    .contact-article .contact-info li a:hover {
+      color: #0056b3;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bubbleCanvas"></canvas>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">MyPortfolio</h1>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+  <div class="hero-text">
+    <h2>Hello, I’m <span class="typing-text">Brenda Abigail Han's Hartama</span></h2>
+    <p>A Front-End Developer passionate about building interactive websites.</p>
+    <button id="hireBtn">Hire Me</button>
+  </div>
+</section>
+
+  <section id="about">
+  <h2>About Me</h2>
+  <div class="about-img">
+    <img src="./gambar/muka.png" alt="Brenda Abigail">
+  </div>
+  <div class="about-text">
+    <p>
+      Results-driven Informatics Engineering student at Tarumanagara University seeking opportunities to apply technical expertise 
+      in building interactive and user-focused web applications. Experienced in developing websites from scratch using HTML, CSS, and JavaScript, Basic proficiency in TypeScript, Next.js, and AngularJS for front-end development.
+    </p>
+  </div>
+</section>
+  <!-- ABOUT -->
+  <!-- <section id="about" class="about">
+    <h2>About Me</h2>
+    <div class="about-img">
+    <img src="./gambar/muka.png" alt="Brenda Abigail">
+    </div>
+    <p>
+      Results-driven Informatics Engineering student at Tarumanagara University seeking opportunities to apply technical expertise 
+      in building interactive and user-focused web applications. Experienced in developing websites from scratch using HTML, CSS, and JavaScript, Basic proficiency in TypeScript, Next.js, and AngularJS for front-end development.
+    </p>
+  </section> -->
+
+  <!-- PROJECTS -->
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <a href="./enfoque-main/homepage.html" target="_blank" class="project-card">
+        <h3>Enfoque Website</h3>
+        <p>A productivity website that enhances focus through a Pomodoro timer, to-do list,
+        theme customization, and personalized features like ambient music and custom backgrounds.</p>
+      </a>
+
+      <a href="./brenda-535230194-main/index.html" target="_blank" class="project-card">
+        <h3>Self Care Hub</h3>
+        <p>A wellness-focused website that encourages users to prioritize mental health, explore relaxation techniques, and create mindful routines for a more balanced lifestyle.</p>
+      </a>
+
+      <a href="./kantin.html" target="_blank" class="project-card">
+        <h3>Kantin 88 Untar Website</h3>
+        <p>Developed the Front-End for a university Software Development final project: a website for Kantin 88 to manage menus and online orders, enabling customers to order and pick up food. Website completed; deployment pending.</p>
+      </a>
+
+      <a href="./werewolf.html" target="_blank" class="project-card">
+        <h3>Office Werewolf Game – Game Developer</h3>
+        <p>Developed the full game logic for a distributed Werewolf game used across office and guest terminals, including rules, player roles, and automated game flow, as part of a group project for a Distributed Systems class.</p>
+      </a>
+
+      <a href="./cuaca.html" target="_blank" class="project-card">
+        <h3>Weather App</h3>
+        <p>Displays real-time weather based on user location. Fetches data from the OpenWeatherMap API and dynamically updates icons and background according to weather conditions.</p>
+      </a>
+
+      <a href="./finance.html" target="_blank" class="project-card">
+        <h3>Personal Finance Tracker</h3>
+        <p>Developed an interactive web application to track income, expenses, and savings. Implemented dynamic charts using Chart.js, form handling, and localStorage to create a responsive dashboard for financial management.</p>
+      </a>
+    </div>
+  </section>
+
+
+  <!-- FLOATING SKILL ICONS SECTION -->
+<section class="skill-floating-section">
+  <div class="skill-text">
+    <h2>Technical Skills</h2>
+    <p>I have worked on various projects using the following applications and technologies:</p>
+  </div>
+
+  <!-- Baris 1 -->
+  <div class="floating-icons row-1">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" title="HTML5">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" title="CSS3">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" title="React">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" title="Next.js">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="AngularJS" title="AngularJS">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" title="PHP">
+
+  </div>
+
+  <!-- Baris 2 -->
+  <div class="floating-icons row-2">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity" title="Unity">
+    <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/canva-icon.png" alt="Canva" title="Canva">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" title="Figma">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" title="Flutter">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg" alt="MATLAB" title="MATLAB">
+  </div>
+</section>
+
+
+  <!-- CONTACT -->
+  <article id="contact" class="contact-article">
+    <hgroup>
+      <h2>Contact Me</h2>
+      <h3>Let’s get in touch — I’d love to hear from you!</h3>
+    </hgroup>
+    <div class="contact-info">
+      <p>You can also reach me directly:</p>
+      <ul>
+        <li>Email: <a href="mailto:brendaabgl@gmail.com">brendaabgl@gmail.com</a></li>
+        <li>Phone: <a href="tel:+6285147284738">+6285147284738</a></li>
+        <li>Chat: <a href="https://wa.me/6285147284738" target="_blank">WhatsApp Me</a></li>
+      </ul>
+    </div>
+    <!-- Social Icons -->
+    <div class="social-icons">
+      <a href="https://www.linkedin.com/in/brenda-abigail-a1615329a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" aria-label="LinkedIn">
+        <i class="bi bi-linkedin"></i>
+      </a>
+      <a href="https://www.instagram.com/briellebbyb?igsh=eWo5azZtbnUyMXI3&utm_source=qr" target="_blank" aria-label="Instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a href="https://wa.me/6285147284738" target="_blank" aria-label="WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Brenda Abigail. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
