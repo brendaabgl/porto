@@ -505,3 +505,25 @@ footer {
     padding: 0 15px;
   }
 }
+
+/* Tombol Download CV */
+.download-cv {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.cv-button {
+  display: inline-block;
+  background-color: #f0d802;
+  color: rgb(0, 0, 0);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.cv-button:hover {
+  background-color: #ff9900;
+  transform: scale(1.05);
+}
