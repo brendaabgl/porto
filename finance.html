@@ -10,75 +10,154 @@
     body {
         font-family: 'Poppins', sans-serif;
         margin: 0;
-        background: linear-gradient(to right, #667eea, #764ba2);
-        color: #fff;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: #f8f9fa;
         display: flex;
         flex-direction: column;
         align-items: center;
         padding: 20px;
     }
-    
-    /* --- CSS UNTUK TOMBOL NAVIGASI --- */
+
     .nav-button-container {
         position: fixed; 
         top: 20px;
         left: 20px;
-        z-index: 100; /* Memastikan tombol di atas semua elemen */
+        z-index: 100;
     }
 
     .nav-link {
         display: inline-block;
         text-decoration: none;
         padding: 10px 18px;
-        background-color: #ffb347; /* Warna cerah dari tombol submit */
-        color: #333;
+        background-color: #00b4d8;
+        color: #fff;
         border: none;
         border-radius: 10px;
         font-weight: 600;
         transition: background-color 0.3s, transform 0.1s;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 10px rgba(0, 180, 216, 0.3);
     }
 
     .nav-link:hover {
-        background-color: #ffcc33;
+        background-color: #0096c7;
         transform: translateY(-1px);
     }
-    
-    h1 { margin-bottom: 20px; }
+
+    h1 { 
+        margin-bottom: 20px; 
+        color: #caf0f8;
+    }
+
     .tracker-container {
-        background: rgba(255,255,255,0.1);
+        background: rgba(255,255,255,0.08);
         padding: 25px 35px;
         border-radius: 20px;
         max-width: 700px;
         width: 100%;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        backdrop-filter: blur(12px);
         margin-bottom: 20px;
     }
+
     form {
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
         margin-bottom: 20px;
     }
-    input, select, button { padding: 12px; border-radius: 10px; border: none; flex: 1 1 45%; font-size: 1rem; }
-    input, select { background: rgba(255,255,255,0.8); color: #333; }
-    button { flex: 1 1 100%; background: #ffb347; color: #333; cursor: pointer; font-weight: bold; transition: 0.3s; }
-    button:hover { background: #ffcc33; }
-    ul { list-style: none; padding: 0; max-height: 200px; overflow-y: auto; margin-bottom: 20px; }
-    li { padding: 10px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.15); border-radius: 10px; }
-    li span { flex: 1; margin-right: 10px; }
-    li button { background: #ff4d4d; color: #fff; padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; }
-    li button:hover { background: #ff0000; }
-    .income { color: #00ff99; font-weight: bold; }
-    .expense { color: #ff4d4d; font-weight: bold; }
-    .balance { font-size: 1.2rem; margin-bottom: 20px; text-align: right; }
-    canvas { max-width: 100%; background: rgba(255,255,255,0.1); border-radius: 15px; padding: 10px; }
+
+    input, select, button {
+        padding: 12px; 
+        border-radius: 10px; 
+        border: none; 
+        flex: 1 1 45%; 
+        font-size: 1rem; 
+    }
+
+    input, select {
+        background: rgba(255,255,255,0.9); 
+        color: #222; 
+    }
+
+    button {
+        flex: 1 1 100%; 
+        background: #00b4d8; 
+        color: #fff; 
+        cursor: pointer; 
+        font-weight: bold; 
+        transition: 0.3s; 
+    }
+
+    button:hover {
+        background: #0096c7; 
+    }
+
+    ul { 
+        list-style: none; 
+        padding: 0; 
+        max-height: 200px; 
+        overflow-y: auto; 
+        margin-bottom: 20px; 
+    }
+
+    li { 
+        padding: 10px; 
+        margin-bottom: 8px; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        background: rgba(255,255,255,0.1); 
+        border-radius: 10px; 
+    }
+
+    li span { 
+        flex: 1; 
+        margin-right: 10px; 
+    }
+
+    li button { 
+        background: #dc3545; 
+        color: #fff; 
+        padding: 5px 10px; 
+        border-radius: 8px; 
+        font-size: 0.8rem; 
+    }
+
+    li button:hover { 
+        background: #c82333; 
+    }
+
+    .income { color: #06d6a0; font-weight: bold; }
+    .expense { color: #ef476f; font-weight: bold; }
+    .savings { color: #ffd166; font-weight: bold; }
+
+    .balance { 
+        font-size: 1.2rem; 
+        margin-bottom: 20px; 
+        text-align: right; 
+        color: #ade8f4;
+    }
+
+    canvas { 
+        max-width: 100%; 
+        background: #ffffffb2; 
+        border-radius: 15px; 
+        padding: 10px; 
+    }
+
+    label {
+        color: #f1f1f1;
+        font-weight: 500;
+    }
+
+    #projection-result {
+        margin-top: 10px;
+        color: #90e0ef;
+    }
 </style>
 </head>
 <body>
 
-<!-- TOMBOL NAVIGASI KE HALAMAN LAIN -->
 <div class="nav-button-container">
     <a href="./index.html" class="nav-link">
         < Home
@@ -122,7 +201,6 @@ const balanceEl = document.getElementById('balance');
 const interestInput = document.getElementById('interest');
 const projectionResult = document.getElementById('projection-result');
 
-// Menggunakan localStorage karena ini adalah aplikasi satu file sederhana
 let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
 function formatRupiah(amount) {
@@ -134,7 +212,11 @@ function saveTransactions() {
 }
 
 function calculateBalance() {
-    return transactions.reduce((acc, tx) => tx.type === 'income' ? acc + tx.amount : tx.type === 'expense' ? acc - tx.amount : acc, 0);
+    return transactions.reduce((acc, tx) => {
+        if (tx.type === 'income') return acc + tx.amount;
+        if (tx.type === 'expense') return acc - tx.amount;
+        return acc; 
+    }, 0);
 }
 
 function totalSavings() {
@@ -145,13 +227,7 @@ function renderTransactions() {
     transactionsList.innerHTML = '';
     transactions.forEach((tx, index) => {
         const li = document.createElement('li');
-        let sign = '';
-        if (tx.type === 'income' || tx.type === 'savings') {
-            sign = '+';
-        } else if (tx.type === 'expense') {
-            sign = '-';
-        }
-        
+        let sign = tx.type === 'income' || tx.type === 'savings' ? '+' : '-';
         li.innerHTML = `
             <span>${tx.description}</span>
             <span class="${tx.type}">${sign}${formatRupiah(tx.amount)}</span>
@@ -165,36 +241,55 @@ function renderTransactions() {
 let chart;
 function updateChart() {
     const labels = transactions.map(tx => tx.description);
-    const data = transactions.map(tx => {
-        if(tx.type==='income') return tx.amount;
-        if(tx.type==='expense') return -tx.amount;
-        return 0; // Savings ignored in main chart
-    });
+    const incomeData = transactions.map(tx => tx.type === 'income' ? tx.amount : 0);
+    const expenseData = transactions.map(tx => tx.type === 'expense' ? tx.amount : 0);
+    const savingsData = transactions.map(tx => tx.type === 'savings' ? tx.amount : 0);
 
-    if(chart) chart.destroy();
+    if (chart) chart.destroy();
 
     chart = new Chart(document.getElementById('financeChart'), {
-        type:'bar',
+        type: 'bar',
         data: {
             labels,
-            datasets:[{
-                label:'Income/Expense',
-                data,
-                backgroundColor:data.map(val=> val>=0?'#00ff99':'#ff4d4d')
-            }]
+            datasets: [
+                {
+                    label: 'Income',
+                    data: incomeData,
+                    backgroundColor: '#06d6a0'
+                },
+                {
+                    label: 'Expense',
+                    data: expenseData.map(v => -v),
+                    backgroundColor: '#ef476f'
+                },
+                {
+                    label: 'Savings / Investment',
+                    data: savingsData,
+                    backgroundColor: '#ffd166'
+                }
+            ]
         },
-        options: { responsive:true, scales:{y:{beginAtZero:true}} }
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { color: '#fff' }
+                },
+                x: { ticks: { color: '#fff' } }
+            },
+            plugins: {
+                legend: { labels: { color: '#fff' } }
+            }
+        }
     });
 }
 
 function addTransaction(description, amount, type) {
-    // Terapkan batas maksimum 10 digit untuk menjaga kinerja aplikasi
     if (String(amount).length > 10) {
-        // Gunakan console.error/log sebagai pengganti alert
         console.error("Amount too large. Max 10 digits allowed.");
         return; 
     }
-    
     transactions.push({ description, amount: parseFloat(amount), type });
     saveTransactions();
     renderTransactions();
@@ -224,14 +319,13 @@ function calculateProjection() {
 
 form.addEventListener('submit',(e)=>{
     e.preventDefault();
-    const amount = amountInput.value.replace(/[^0-9.]/g, ''); // Hapus karakter non-angka
+    const amount = amountInput.value.replace(/[^0-9.]/g, '');
     addTransaction(descriptionInput.value.trim(), amount, typeInput.value);
     form.reset();
 });
 
 document.getElementById('calculate-projection').addEventListener('click', calculateProjection);
 
-// Initial render
 renderTransactions();
 updateChart();
 </script>
