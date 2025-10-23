@@ -34,28 +34,37 @@
         }
 
         /* Container Slider Gambar */
-    .slider-container {
-        width: 90%; /* Ditingkatkan dari 80% ke 90% agar lebih lebar di layar kecil */
-        max-width: 700px; /* NILAI INI DIUBAH MENJADI LEBIH BESAR */ 
-        overflow: hidden; 
-        border: 1px solid #ccc; 
-        border-radius: 5px; 
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-        position: relative; 
-        background-color: #f9f9f9; 
-    }
+            /* === GAYA SLIDER YANG MEMPERTAHANKAN UKURAN ASLI GAMBAR === */
+        .slider-container {
+            width: 90%;
+            max-width: 700px;
+            overflow-x: auto; /* aktifkan scroll horizontal kalau gambar lebih besar */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
 
-    .slide-show {
-        display: flex;
-        transition: transform 3s ease-in-out; 
-    }
+        .slide-show {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px; /* jarak antar gambar */
+            transition: transform 3s ease-in-out;
+        }
 
-    .slide-show img {
-        width: 100%;
-        height: auto;
-        min-width: 100%; 
-        display: block;
-    }
+        /* ✅ Gambar mengikuti ukuran aslinya */
+        .slide-show img {
+            width: auto;
+            height: auto;
+            max-height: 400px; /* biar nggak terlalu besar */
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
 
     /* --- STYLING UNTUK TOMBOL PINDAH HALAMAN --- */
         .navigation-link {
