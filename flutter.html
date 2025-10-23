@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MRT Compass Flutter Project</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9fafc;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    header {
+      background-color: #0d1117;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h2 {
+      color: #007bff;
+      font-size: 1.5rem;
+      border-left: 4px solid #007bff;
+      padding-left: 10px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+
+    .image-container {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .image-container img {
+      width: 100%;
+      max-width: 700px;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .image-container img:hover {
+      transform: scale(1.03);
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: #0056b3;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      padding: 25px;
+      background: #0d1117;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .tech-used {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .tech-used span {
+      background: #e9ecef;
+      color: #007bff;
+      padding: 8px 15px;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
+
+    .tech-used span:hover {
+      background: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>MRT Compass Flutter Project</h1>
+    <p>A Flutter-based MRT companion app for home screen, travel estimation, and real-time transaction management.</p>
+  </header>
+
+  <main>
+    <section>
+      <p>
+        My contributions to the development of the <strong>MRT Compass</strong> Flutter project include creating the <strong>Home Screen</strong>, assisting my teammates in building the transaction backend, developing the <strong>Travel Estimation</strong> feature, and creating the <strong>FAQ</strong> section.
+      </p>
+    </section>
+
+    <section>
+      <h2>Home Screen Development</h2>
+      <p>
+        I was responsible for coding the <strong>Home Screen Page</strong> using Flutter. My focus was to design an intuitive and interactive user interface (UI), ensuring smooth navigation and implementing essential components such as buttons, icons, and layouts that support the app’s main functionality. 
+        The entire page was built to provide a <strong>responsive and engaging user experience</strong> across different devices.
+      </p>
+    </section>
+
+    <div class="image-container">
+      <img src="./gambar/1.png" alt="MRT Compass App Interface">
+    </div>
+
+    <section>
+      <h2>Backend Development and Travel Estimation Feature</h2>
+      <p>
+        For the <strong>transaction backend</strong>, I collaborated with my teammate to develop the backend system using <strong>Firebase</strong>. 
+        We configured Firebase to handle user authentication, store transaction data, and monitor transaction history in <strong>real-time</strong>. 
+        This collaboration ensured that every transaction is securely recorded and can be easily accessed anytime by users.
+      </p>
+      <p>
+        I also contributed to the <strong>Travel Time Estimation</strong> feature using Flutter. I designed the calculation logic based on real-time data such as train schedules, selected routes, and MRT operational conditions. 
+        The user interface was designed to be <strong>simple and intuitive</strong>, allowing users to easily select departure and destination stations. 
+        The system continuously updates and displays accurate, real-time travel time estimates while maintaining smooth performance.
+      </p>
+    </section>
+
+    <div class="image-container">
+      <img src="./gambar/2.png" alt="Firebase Integration - MRT Compass">
+    </div>
+
+    <section>
+      <h2>Virtual FAQ</h2>
+      <p>
+        In this section, I developed a <strong>virtual FAQ system</strong> designed to respond to user needs quickly and efficiently.
+Visual elements such as friendly chat bubbles and clear action buttons including <strong>Help, Contact Us, Check Balance, and Transaction History</strong>, ensure that users can instantly access the information they need.
+The interface was built with a strong focus on usability, allowing users to either type their questions directly into the provided input field or choose from the predefined options.
+The well-organized layout and vividly colored buttons provide intuitive access to the main features, enhancing both user experience and interaction flow.
+      </p>
+    </section>
+
+    <div class="image-container">
+      <img src="./gambar/4.png" alt="Travel Estimation Feature - MRT Compass">
+    </div>
+
+    <a href="index.html" class="back-btn"><i class="bi bi-arrow-left-circle"></i> Back to Portfolio</a>
+  </main>
+
+  <section>
+      <h2>Technologies Used</h2>
+      <div class="tech-used">
+        <span>Flutter</span>
+        <span>Firebase</span>
+        <span>Dart</span>
+        <span>Google Maps API</span>
+      </div>
+    </section>
+
+  <footer>
+    <p>© 2025 Brenda Abigail. All rights reserved.</p>
+  </footer>
+</body>
+</html>
