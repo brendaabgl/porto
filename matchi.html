@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -22,47 +22,52 @@
         .text-explanation-area {
             width: 80%;
             max-width: 600px;
-            margin-bottom: 50px; /* Jarak antara teks dan slider */
+            margin-bottom: 50px;
             text-align: center;
             font-size: 1.1em;
             line-height: 1.6;
-            padding: 10px; /* Sedikit padding agar terlihat lebih baik */
+            padding: 10px;
         }
 
         .text-explanation-area p {
-            margin: 5px 0; /* Memberi jarak antar baris paragraf */
+            margin: 5px 0;
         }
 
         /* Container Slider Gambar */
-    .slider-container {
-        width: 90%; /* Ditingkatkan dari 80% ke 90% agar lebih lebar di layar kecil */
-        max-width: 700px; /* NILAI INI DIUBAH MENJADI LEBIH BESAR */ 
-        overflow: hidden; 
-        border: 1px solid #ccc; 
-        border-radius: 5px; 
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-        position: relative; 
-        background-color: #f9f9f9; 
-    }
+        .slider-container {
+            width: 90%;
+            max-width: 700px;
+            overflow: hidden; 
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+            background-color: #f9f9f9; 
+        }
 
-    .slide-show {
-        display: flex;
-        transition: transform 1s ease-in-out; 
-    }
+        .slide-show {
+            display: flex;
+            transition: transform 1s ease-in-out; 
+        }
 
-    .slide-show img {
-        width: 100%;
-        height: auto;
-        min-width: 100%; 
-        display: block;
-    }
+        .slide-show img {
+            width: 100%;
+            height: auto;
+            min-width: 100%; 
+            display: block;
+        }
 
-    /* --- STYLING UNTUK TOMBOL PINDAH HALAMAN --- */
-        .navigation-link {
-            text-decoration: none; /* Hilangkan garis bawah link */
-            margin-bottom: 20px; /* Jarak dengan teks di bawahnya */
+        /* --- STYLING UNTUK TOMBOL --- */
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .navigation-link,
+        .github-link {
+            text-decoration: none;
             padding: 10px 20px;
-            background-color: #007bff; /* Warna biru */
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
@@ -73,31 +78,35 @@
         .navigation-link:hover {
             background-color: #0056b3;
         }
+
+        .github-link {
+            background-color: #24292e;
+        }
+
+        .github-link:hover {
+            background-color: #000;
+        }
     </style>
 </head>
 <body>
 
     <div class="text-explanation-area">
-        <p>Front-End Developer – MATCHI Website (University Project)
-This website is my final project for the Frontend Programming course in my third semester. My team and I built MATCHI, a fashion exploration platform where users can browse fashion items, comment, create collections, post blogs, explore trends and events, and learn about clothing materials. Although the site isn’t deployed, I can share its design and layout screenshots.</p>
+        <p><strong>Front-End Developer – MATCHI Website (University Project)</strong><br>
+        This website is my final project for the Frontend Programming course in my third semester. My team and I built MATCHI, a fashion exploration platform where users can browse fashion items, comment, create collections, post blogs, explore trends and events, and learn about clothing materials. Although the site isn’t deployed, I can share its design and layout screenshots.</p>
     </div>
     
     <div class="slider-container">
-        <div class="slide-show" id="slider">
-            </div>
+        <div class="slide-show" id="slider"></div>
     </div>
-    <p>
-        
-    </p>
 
-    <a href="index.html" class="navigation-link">
-        < Home
-    </a>
+    <!-- Tombol Home & GitHub di satu baris -->
+    <div class="button-container">
+        <a href="index.html" class="navigation-link">⟵ Home</a>
+        <a href="https://github.com/brendaabgl/MATCHI.git" target="_blank" class="github-link">View on GitHub</a>
+    </div>
 
     <script>
-        // JavaScript untuk Logika Slider Otomatis (Teks tidak diubah)
-        
-        // Data slider hanya membutuhkan URL gambar saja
+        // JavaScript untuk Logika Slider Otomatis
         const images = [
             './gambar/matchi.png', 
             './gambar/matchi1.png',
@@ -113,32 +122,28 @@ This website is my final project for the Frontend Programming course in my third
         let currentSlide = 0;
         const slideInterval = 4000; // Interval waktu (4 detik)
 
-        // 1. Memuat Gambar ke dalam HTML
+        // Memuat gambar ke dalam slider
         images.forEach(url => {
             const img = document.createElement('img');
             img.src = url;
-            img.alt = 'Galeri Foto';
+            img.alt = 'Galeri MATCHI';
             sliderElement.appendChild(img);
         });
 
-        // 2. Fungsi untuk Mengubah Tampilan Slider
+        // Fungsi untuk mengubah tampilan slider
         function updateSlider() {
-            // Hitung posisi horizontal untuk menggeser gambar
             const offset = -currentSlide * 100;
             sliderElement.style.transform = `translateX(${offset}%)`;
         }
 
-        // 3. Fungsi untuk Menampilkan Slide Berikutnya
+        // Fungsi untuk menampilkan slide berikutnya
         function nextSlide() {
-            // Hitung slide berikutnya. Jika sudah yang terakhir, kembali ke 0.
             currentSlide = (currentSlide + 1) % images.length;
             updateSlider();
         }
 
-        // 4. Mulai Interval Otomatis
+        // Jalankan otomatis
         setInterval(nextSlide, slideInterval);
-
-        // Inisialisasi: Tampilkan slide pertama
         updateSlider();
     </script>
 </body>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slider dengan Teks Statis di Atas</title>
+    <title>Kantin 88 Website Project</title>
     <style>
-        /* CSS untuk Styling Website dan Komponen */
+        /* === Styling Umum === */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -18,86 +18,103 @@
             color: #333;
         }
 
-        /* Area Paragraf Penjelasan (STATIS) */
+        /* === Area Penjelasan === */
         .text-explanation-area {
             width: 80%;
             max-width: 600px;
-            margin-bottom: 50px; /* Jarak antara teks dan slider */
+            margin-bottom: 50px;
             text-align: center;
             font-size: 1.1em;
             line-height: 1.6;
-            padding: 10px; /* Sedikit padding agar terlihat lebih baik */
+            padding: 10px;
         }
 
         .text-explanation-area p {
-            margin: 5px 0; /* Memberi jarak antar baris paragraf */
+            margin: 5px 0;
         }
 
-        /* Container Slider Gambar */
-    .slider-container {
-        width: 90%; /* Ditingkatkan dari 80% ke 90% agar lebih lebar di layar kecil */
-        max-width: 700px; /* NILAI INI DIUBAH MENJADI LEBIH BESAR */ 
-        overflow: hidden; 
-        border: 1px solid #ccc; 
-        border-radius: 5px; 
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
-        position: relative; 
-        background-color: #f9f9f9; 
-    }
+        /* === Slider === */
+        .slider-container {
+            width: 90%;
+            max-width: 700px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+        }
 
-    .slide-show {
-        display: flex;
-        transition: transform 1s ease-in-out; 
-    }
+        .slide-show {
+            display: flex;
+            transition: transform 1s ease-in-out;
+        }
 
-    .slide-show img {
-        width: 100%;
-        height: auto;
-        min-width: 100%; 
-        display: block;
-    }
+        .slide-show img {
+            width: 100%;
+            height: auto;
+            min-width: 100%;
+            display: block;
+        }
 
-    /* --- STYLING UNTUK TOMBOL PINDAH HALAMAN --- */
-        .navigation-link {
-            text-decoration: none; /* Hilangkan garis bawah link */
-            margin-bottom: 20px; /* Jarak dengan teks di bawahnya */
+        /* === Container Tombol === */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        /* === Tombol Navigasi === */
+        .navigation-link, .github-link {
+            text-decoration: none;
             padding: 10px 20px;
-            background-color: #007bff; /* Warna biru */
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, transform 0.2s;
         }
 
-        .navigation-link:hover {
+        .navigation-link:hover, .github-link:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .github-link {
+            background-color: #24292e;
+        }
+
+        .github-link:hover {
+            background-color: #000;
+        }
+
+        .github-link i {
+            margin-right: 6px;
         }
     </style>
 </head>
 <body>
 
     <div class="text-explanation-area">
-        <p>Front-End Developer – Kantin 88 Website (University Project)
-Developed the backend of a web application for Kantin 88, a university canteen, to manage menu and online orders, including database and server-side functionality. Project completed; deployment pending by the owner.</p>
+        <p><strong>Front-End Developer – Kantin 88 Website (University Project)</strong><br>
+        Developed the backend of a web application for Kantin 88, a university canteen, to manage menu and online orders, including database and server-side functionality. Project completed; deployment pending by the owner.</p>
     </div>
     
     <div class="slider-container">
-        <div class="slide-show" id="slider">
-            </div>
+        <div class="slide-show" id="slider"></div>
     </div>
-    <p>
-        
-    </p>
 
-    <a href="index.html" class="navigation-link">
-        < Home
-    </a>
+    <!-- Tombol Home & GitHub dalam satu baris -->
+    <div class="button-container">
+        <a href="index.html" class="navigation-link">⟵ Home</a>
+        <a href="https://github.com/erycaaaaa/Website-Kantin-Nasi-Hainam-88.git" target="_blank" class="github-link">
+            <i>🐙</i> View on GitHub
+        </a>
+    </div>
 
     <script>
-        // JavaScript untuk Logika Slider Otomatis (Teks tidak diubah)
-        
-        // Data slider hanya membutuhkan URL gambar saja
+        // === Logika Slider Otomatis ===
         const images = [
             './gambar/kantin.png', 
             './gambar/kantin1.png',
@@ -113,32 +130,27 @@ Developed the backend of a web application for Kantin 88, a university canteen, 
         let currentSlide = 0;
         const slideInterval = 4000; // Interval waktu (4 detik)
 
-        // 1. Memuat Gambar ke dalam HTML
+        // Muat gambar ke slider
         images.forEach(url => {
             const img = document.createElement('img');
             img.src = url;
-            img.alt = 'Galeri Foto';
+            img.alt = 'Galeri Kantin 88';
             sliderElement.appendChild(img);
         });
 
-        // 2. Fungsi untuk Mengubah Tampilan Slider
+        // Fungsi update slider
         function updateSlider() {
-            // Hitung posisi horizontal untuk menggeser gambar
             const offset = -currentSlide * 100;
             sliderElement.style.transform = `translateX(${offset}%)`;
         }
 
-        // 3. Fungsi untuk Menampilkan Slide Berikutnya
+        // Ganti slide otomatis
         function nextSlide() {
-            // Hitung slide berikutnya. Jika sudah yang terakhir, kembali ke 0.
             currentSlide = (currentSlide + 1) % images.length;
             updateSlider();
         }
 
-        // 4. Mulai Interval Otomatis
         setInterval(nextSlide, slideInterval);
-
-        // Inisialisasi: Tampilkan slide pertama
         updateSlider();
     </script>
 </body>
