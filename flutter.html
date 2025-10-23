@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MRT Compass Flutter Project</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <style>
@@ -72,7 +72,7 @@
       transform: scale(1.03);
     }
 
-    .back-btn {
+    .back-btn, .github-btn {
       display: inline-block;
       margin-top: 25px;
       padding: 10px 20px;
@@ -84,8 +84,17 @@
       transition: 0.3s;
     }
 
-    .back-btn:hover {
+    .back-btn:hover, .github-btn:hover {
       background: #0056b3;
+    }
+
+    .github-btn {
+      margin-left: 10px;
+      background-color: #24292e;
+    }
+
+    .github-btn:hover {
+      background-color: #000;
     }
 
     footer {
@@ -168,9 +177,9 @@
       <h2>Virtual FAQ</h2>
       <p>
         In this section, I developed a <strong>virtual FAQ system</strong> designed to respond to user needs quickly and efficiently.
-Visual elements such as friendly chat bubbles and clear action buttons including <strong>Help, Contact Us, Check Balance, and Transaction History</strong>, ensure that users can instantly access the information they need.
-The interface was built with a strong focus on usability, allowing users to either type their questions directly into the provided input field or choose from the predefined options.
-The well-organized layout and vividly colored buttons provide intuitive access to the main features, enhancing both user experience and interaction flow.
+        Visual elements such as friendly chat bubbles and clear action buttons including <strong>Help, Contact Us, Check Balance, and Transaction History</strong>, ensure that users can instantly access the information they need.
+        The interface was built with a strong focus on usability, allowing users to either type their questions directly into the provided input field or choose from the predefined options.
+        The well-organized layout and vividly colored buttons provide intuitive access to the main features, enhancing both user experience and interaction flow.
       </p>
     </section>
 
@@ -179,6 +188,7 @@ The well-organized layout and vividly colored buttons provide intuitive access t
     </div>
 
     <a href="index.html" class="back-btn"><i class="bi bi-arrow-left-circle"></i> Back to Portfolio</a>
+    <a href="https://github.com/sproutnforest/MRT-COMPASS.git" target="_blank" class="github-btn"><i class="bi bi-github"></i> View on GitHub</a>
   </main>
 
   <section>
