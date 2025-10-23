@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider dengan Teks Statis di Atas</title>
+    <style>
+        /* CSS untuk Styling Website dan Komponen */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffffff; 
+            color: #333;
+        }
+
+        /* Area Paragraf Penjelasan (STATIS) */
+        .text-explanation-area {
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 50px; /* Jarak antara teks dan slider */
+            text-align: center;
+            font-size: 1.1em;
+            line-height: 1.6;
+            padding: 10px; /* Sedikit padding agar terlihat lebih baik */
+        }
+
+        .text-explanation-area p {
+            margin: 5px 0; /* Memberi jarak antar baris paragraf */
+        }
+
+        /* Container Slider Gambar */
+    .slider-container {
+        width: 90%; /* Ditingkatkan dari 80% ke 90% agar lebih lebar di layar kecil */
+        max-width: 700px; /* NILAI INI DIUBAH MENJADI LEBIH BESAR */ 
+        overflow: hidden; 
+        border: 1px solid #ccc; 
+        border-radius: 5px; 
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+        position: relative; 
+        background-color: #f9f9f9; 
+    }
+
+    .slide-show {
+        display: flex;
+        transition: transform 1s ease-in-out; 
+    }
+
+    .slide-show img {
+        width: 100%;
+        height: auto;
+        min-width: 100%; 
+        display: block;
+    }
+
+    /* --- STYLING UNTUK TOMBOL PINDAH HALAMAN --- */
+        .navigation-link {
+            text-decoration: none; /* Hilangkan garis bawah link */
+            margin-bottom: 20px; /* Jarak dengan teks di bawahnya */
+            padding: 10px 20px;
+            background-color: #007bff; /* Warna biru */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .navigation-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="text-explanation-area">
+        <p>Front-End Developer – MATCHI Website (University Project)
+This website is my final project for the Frontend Programming course in my third semester. My team and I built MATCHI, a fashion exploration platform where users can browse fashion items, comment, create collections, post blogs, explore trends and events, and learn about clothing materials. Although the site isn’t deployed, I can share its design and layout screenshots.</p>
+    </div>
+    
+    <div class="slider-container">
+        <div class="slide-show" id="slider">
+            </div>
+    </div>
+    <p>
+        
+    </p>
+
+    <a href="index.html" class="navigation-link">
+        < Home
+    </a>
+
+    <script>
+        // JavaScript untuk Logika Slider Otomatis (Teks tidak diubah)
+        
+        // Data slider hanya membutuhkan URL gambar saja
+        const images = [
+            './gambar/matchi.png', 
+            './gambar/matchi1.png',
+            './gambar/matchi4.png', 
+            './gambar/matchi2.png', 
+            './gambar/matchi5.png',
+            './gambar/matchi6.png',
+            './gambar/matchi3.png',
+            './gambar/matchi7.png'
+        ];
+
+        const sliderElement = document.getElementById('slider');
+        let currentSlide = 0;
+        const slideInterval = 4000; // Interval waktu (4 detik)
+
+        // 1. Memuat Gambar ke dalam HTML
+        images.forEach(url => {
+            const img = document.createElement('img');
+            img.src = url;
+            img.alt = 'Galeri Foto';
+            sliderElement.appendChild(img);
+        });
+
+        // 2. Fungsi untuk Mengubah Tampilan Slider
+        function updateSlider() {
+            // Hitung posisi horizontal untuk menggeser gambar
+            const offset = -currentSlide * 100;
+            sliderElement.style.transform = `translateX(${offset}%)`;
+        }
+
+        // 3. Fungsi untuk Menampilkan Slide Berikutnya
+        function nextSlide() {
+            // Hitung slide berikutnya. Jika sudah yang terakhir, kembali ke 0.
+            currentSlide = (currentSlide + 1) % images.length;
+            updateSlider();
+        }
+
+        // 4. Mulai Interval Otomatis
+        setInterval(nextSlide, slideInterval);
+
+        // Inisialisasi: Tampilkan slide pertama
+        updateSlider();
+    </script>
+</body>
+</html>
